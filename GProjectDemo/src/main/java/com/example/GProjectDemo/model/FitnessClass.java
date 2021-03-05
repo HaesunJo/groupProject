@@ -22,7 +22,8 @@ public class FitnessClass {
 	@Column(name="time")
 	private String time;
 	
-	
+	@Column(name="instructor")
+	private String instructor;
 	
 	
 	
@@ -50,5 +51,14 @@ public class FitnessClass {
 	public void setTime(String time) {
 		this.time = time;
 	}
+
+	public String getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(String instructor) {
+		this.instructor = instructor;
+	}
+	
 	
 }
