@@ -49,6 +49,8 @@ public class FitnessClass {
 	@Column(name="time")
 	private String time;
 	
+	@Column(name="location")
+	private String location;
 	
 	// CREATE TABLE
 	@JsonIgnore 
@@ -78,7 +80,7 @@ public class FitnessClass {
 	
 	// Constructor
 	public FitnessClass(String name, int section, 
-			String month, int date, String day, String time, String instructor) {
+			String month, int date, String day, String time, String instructor, String location) {
 		this.className = name;
 		this.classSection = section;
 		this.month = month;
@@ -86,6 +88,7 @@ public class FitnessClass {
 		this.day = day;
 		this.time = time;
 		this.instructor = instructor;
+		this.location = location;
 	}
 	
 
@@ -154,6 +157,14 @@ public class FitnessClass {
 
 	public void setTime(String time) {
 		this.time = time;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	

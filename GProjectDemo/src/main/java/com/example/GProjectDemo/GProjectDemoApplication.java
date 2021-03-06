@@ -25,7 +25,7 @@ public class GProjectDemoApplication {
 			ManagerRepository managerRepository) {
 		return args -> {
 			
-			FitnessClass[] classes = {new FitnessClass("Yoga",1, "Jan",2,"Monday", "12:30","Tiffany")
+			FitnessClass[] classes = {new FitnessClass("Yoga",1, "Jan",2,"Monday", "12:30","Tiffany", "Vancouver")
 					
 			};
 			
