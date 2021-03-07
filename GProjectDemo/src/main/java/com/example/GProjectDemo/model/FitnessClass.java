@@ -72,7 +72,7 @@ public class FitnessClass {
 	
 	
 	// Default Constructor
-	public FitnessClass() {
+	public FitnessClass(String s, int i, String ins, int d, String loc, String m, String t) {
 		
 	}
 	
@@ -121,6 +121,51 @@ public class FitnessClass {
 	public void setInstructor(String instructor) {
 		this.instructor = instructor;
 	}
+
+	public int getClassSection() {
+		return classSection;
+	}
+
+	public void setClassSection(int classSection) {
+		this.classSection = classSection;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public String getDay() {
+		return day;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+
+	public int getDate() {
+		return date;
+	}
+
+	public void setDate(int date) {
+		this.date = date;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public void setCustomers(Set<Customer> customers) {
+		this.customers = customers;
+	}
+	
 	
 	
 }
