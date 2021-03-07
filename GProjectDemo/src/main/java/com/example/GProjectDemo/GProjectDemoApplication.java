@@ -32,14 +32,15 @@ public class GProjectDemoApplication {
 			};
 			
 			Customer[] customers = {new Customer("1234", "Seunghee Ko", "kos6@student.douglascollege.ca", "1234567"),
-					new Customer("5678", "Seunghee Ko", "kos6@student.douglascollege.ca", "1234567"),
-					new Customer("3456", "Seunghee Ko", "kos6@student.douglascollege.ca", "1234567")
-					};
+									new Customer("5678", "Haesun Jo", "Joh31@student.douglascollege.ca", "1234567"),
+									new Customer("3456", "Ivan Wong", "kos6@student.douglascollege.ca", "1234567"),
+									new Customer("1123", "Chelsea James", "cjames@gmail.com", "1234567")
+									};
 			
 
-			Manager[] managers = {new Manager("riako", "Seunghee Ko", "kos6@student.douglascollege.ca", "1234567")
+			Manager[] managers = {	new Manager("riako", "Seunghee Ko", "kos6@student.douglascollege.ca", "1234567")
 					
-			};
+									};
 			
 			Product[] products = {new Product("Vegetarian", 150.00)
 				
