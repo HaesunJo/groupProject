@@ -96,7 +96,6 @@ public class FitnessClassController {
 			_fClass.setMonth(fClass.getMonth());
 			_fClass.setLocation(fClass.getLocation());
 			
-			
 			return new ResponseEntity<>(fitnessClassRepository.save(fClass), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
