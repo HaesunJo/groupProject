@@ -38,15 +38,17 @@ public class Customer {
 	//ManyToMany
 	@ManyToMany(mappedBy="customers", fetch=FetchType.LAZY, 
 			cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	
 	private Set<FitnessClass> classes = new HashSet<>();
 
 	public Set<FitnessClass> getClaases() {
 		return classes;
 	}
-
+	
 	public void setClaases(Set<FitnessClass> classes) {
 		this.classes = classes;
 	}
+	
 	
 	// Add class
 	public void addClass(FitnessClass fitnessClass) {

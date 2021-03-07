@@ -37,7 +37,7 @@ public class FitnessClass {
 	@Column(name="instructor")
 	private String instructor;
 	
-	@Column(name="Month")
+	@Column(name="month")
 	private String month;
 	
 	@Column(name="date")
@@ -67,7 +67,7 @@ public class FitnessClass {
 		return customers;
 	}
 
-	public void setStudents(Set<Customer> customers) {
+	public void setCustomers(Set<Customer> customers) {
 		this.customers = customers;
 	}
 	
