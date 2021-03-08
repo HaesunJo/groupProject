@@ -1,13 +1,13 @@
 package com.example.GProjectDemo.request;
 
+import javax.validation.constraints.NotBlank;
 
 public class CustomerLoginRequest {
 
-	//Annotation doesn't work! help!
-	//@NotBlank(message = "Customer Id cannot be blank")
+	@NotBlank(message = "Customer Id cannot be blank")
 	private String customerId;
 	
-	//@NotBlank(message = "Password cannot be blank")
+	@NotBlank(message = "Password cannot be blank")
 	private String password;
 
 	public String getCustomerId() {
