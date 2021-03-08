@@ -112,7 +112,7 @@ public class FitnessClassController {
 		}
 	}
 	
-	@DeleteMapping("/classes/{id}")
+	@DeleteMapping("/classes")
 	public ResponseEntity<HttpStatus> deleteAllClass(@PathVariable("id") long id){
 		try {
 			fitnessClassRepository.deleteAll();

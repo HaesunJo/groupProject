@@ -53,10 +53,9 @@ public class RegistrationController {
 			}
 			else {
 				MessageResponse msg = new MessageResponse("No such a customer");
-				return new ResponseEntity<>(HttpStatus.OK);
+				return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
 			}
 		} catch(Exception e) {
-			MessageResponse msg = new MessageResponse("No such a customer");
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
