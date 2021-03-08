@@ -2,10 +2,11 @@ package com.example.GProjectDemo.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ public class LoginController {
 	CustomerRepository customerRepository;
 	
 	@PostMapping("/login")
-	public ResponseEntity<?> loging(@Validated @RequestBody CustomerLoginRequest loginRequest){
+	public ResponseEntity<?> loging(@Valid @RequestBody CustomerLoginRequest loginRequest){
 		try {
 			Optional<Customer> customerData = customerRepository.findByCustomerId(loginRequest.getCustomerId());
 			if(customerData.isPresent()) {
