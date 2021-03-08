@@ -1,12 +1,14 @@
 package com.example.GProjectDemo.request;
 
+import javax.validation.constraints.NotBlank;
+
 public class RegistrationRequest {
 	
-	//Annotation doesn't work! help!
-	//@NotBlank(message = "Customer Id cannot be blank")
+
+	@NotBlank(message = "Customer Id cannot be blank")
 	private String action;
 	
-	//@NotBlank(message = "Class name cannot be blank")
+	@NotBlank(message = "Class name cannot be blank")
 	private Long className;
 
 	public String getAction() {
