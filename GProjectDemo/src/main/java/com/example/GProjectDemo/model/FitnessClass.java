@@ -72,6 +72,9 @@ public class FitnessClass {
 	
 	
 	// Default Constructor
+	
+	public FitnessClass() {}
+	
 	public FitnessClass(String s, int i, String ins, int d, String loc, String m, String t) {
 		
 	}
