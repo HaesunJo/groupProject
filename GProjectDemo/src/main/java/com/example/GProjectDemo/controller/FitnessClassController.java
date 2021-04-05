@@ -64,7 +64,7 @@ public class FitnessClassController {
 	@PostMapping("/classes")
 	public ResponseEntity<FitnessClass> createFClass(@RequestBody FitnessClass fclass){
 		try {
-			FitnessClass _fclass = fitnessClassRepository.save(new FitnessClass(fclass.getClassName(), fclass.getClassSection(), fclass.getInstructor(), fclass.getDate(), fclass.getLocation(), fclass.getMonth(), fclass.getTime()));
+			FitnessClass _fclass = fitnessClassRepository.save(new FitnessClass(fclass.getClassName(), fclass.getClassSection(), fclass.getInstructor(), fclass.getDate(), fclass.getDay(), fclass.getLocation(), fclass.getMonth(), fclass.getTime()));
 			return new ResponseEntity<>(_fclass, HttpStatus.CREATED);
 		} catch (Exception e){
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -74,7 +74,7 @@ public class FitnessClassController {
 	@PutMapping("/classe")
 	public ResponseEntity<FitnessClass> updateFClass(@RequestBody FitnessClass fclass){
 		try {
-			FitnessClass _fclass = fitnessClassRepository.save(new FitnessClass(fclass.getClassName(), fclass.getClassSection(), fclass.getInstructor(), fclass.getDate(), fclass.getLocation(), fclass.getMonth(), fclass.getTime()));
+			FitnessClass _fclass = fitnessClassRepository.save(new FitnessClass(fclass.getClassName(), fclass.getClassSection(), fclass.getInstructor(), fclass.getDate(), fclass.getDay(), fclass.getLocation(), fclass.getMonth(), fclass.getTime()));
 			return new ResponseEntity<>(_fclass, HttpStatus.CREATED);
 		} catch (Exception e){
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

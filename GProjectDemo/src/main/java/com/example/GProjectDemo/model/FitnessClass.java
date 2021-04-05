@@ -75,10 +75,10 @@ public class FitnessClass {
 	
 	public FitnessClass() {}
 	
-	public FitnessClass(String s, int i, String ins, int d, String loc, String m, String t) {
-		
-	}
-	
+//	public FitnessClass(String s, int i, String ins, int d, String loc, String m, String t) {
+//		
+//	}
+//	
 	// Constructor
 	public FitnessClass(String name, int classSection, 
 			String month, int date, String day, String time, String instructor, String location) {
