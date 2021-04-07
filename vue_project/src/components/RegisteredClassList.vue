@@ -64,7 +64,7 @@ import CustomerDataService from "../../services/CustomerDataService";
 import RegistrationDataService from "../../services/RegistrationDataService";
 
 export default {
-  name: "reg-courses-list",
+  name: "reg-classes-list",
   data() {
     return {
       customer: null,
@@ -124,10 +124,10 @@ export default {
       this.currentIndex = -1;
       this.regFlag = false;
       this.registrationRequest.customerId = "";
-      this.registrationRequest.classCode = "";
+      this.registrationRequest.className = "";
     },
     retrieveCustomer() {
-      var id = localStorage.getItem("sid");
+      var id = localStorage.getItem("cid");
       CustomerDataService.get(id)
         .then(response => {
           this.customer = response.data;
