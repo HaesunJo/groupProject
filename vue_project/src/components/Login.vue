@@ -34,14 +34,12 @@ import LoginService from "../../services/LoginService";
 
 export default {
   name: "login",
-  // defining what data variable are used in this page
-  data() {						// data or variables used
+  data() {						
     return {
-      customerLoginRequest: { customerId: "", password: "" },  // json
+      customerLoginRequest: { customerId: "", password: "" },  
       message: ""
     };
   },
-  // login method -> calll LoginService.login function -> pass data
   methods: {
     login() {
       LoginService.login(this.customerLoginRequest)  
@@ -49,10 +47,6 @@ export default {
           var customer = response.data;
           console.log(customer);
           localStorage.setItem("cid",customer.id);
-		// store the student (sid) to the local storage
-		// RESTful server does not have session
-        // Session info is saved in local storage and talk to
-		// server as json
           this.$router.push({name: "registered-class-list"});
         })
         .catch(e => {
@@ -63,7 +57,7 @@ export default {
         });
     }
   },
-  mounted() {		// called when component is loaded
+  mounted() {	
     this.message = "";
   }
 };

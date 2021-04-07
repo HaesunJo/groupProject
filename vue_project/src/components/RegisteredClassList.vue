@@ -79,7 +79,6 @@ export default {
 
   methods: {
     showUnregisterClass() {
-      // this.registrationRequest.studentId = this.student.id;
       RegistrationDataService.get(this.customer.id, false)
         .then(response => {
           this.currentClass = null;
@@ -143,8 +142,7 @@ export default {
     }
   },
 
-// very first methood to be executed
-// call automatcially when this componenet being load
+
   mounted() {
     this.retrieveCustomer();
   }
