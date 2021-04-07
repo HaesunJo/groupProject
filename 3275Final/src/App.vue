@@ -4,7 +4,13 @@
       <router-link to="/" class="navbar-brand">Group Project</router-link>
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link to="/courses" class="nav-link">Classes</router-link>
+          <router-link to="/class" class="nav-link">Class</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/mealplan" class="nav-link">Meal Plan</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/community" class="nav-link">Community</router-link>
         </li>
       </div>
     </nav>

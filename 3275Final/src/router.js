@@ -9,10 +9,23 @@ export default new Router({
     {
       path: "/",
       alias: "/login",
-      name: "login",
+      name: "/login",
       component: () => import("./components/Login")
     }
+    ,
+    {
+      path: "/signup",
+      alias: "/signup",
+      name: "/signup",
+      component: () => import("./components/SignUp")
+    }
    ,
+    {
+      path: "/managerLogin",
+      name: "/managerLogin",
+      component: () => import("./components/ManagerLogin")
+    }
+    ,
     {
       path: "/registeredClassesList",
       name: "registered-classes-list",

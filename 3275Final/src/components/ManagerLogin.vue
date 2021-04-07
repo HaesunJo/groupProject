@@ -1,14 +1,14 @@
 <template> <!-- define the layout -->
   <div class="edit-form">
-    <h4>Login</h4>
+    <h4>Manager Login</h4>
     <form>
       <div class="form-group">
-        <label for="customerId">Customer ID</label>
+        <label for="managerId">Manager ID</label>
         <input
           type="text"
           class="form-control"
-          id="customerId"
-          v-model="customerLoginRequest.customerId"
+          id="managerId"
+          v-model="managerLoginRequest.managerId"
         />
       </div>
       <div class="form-group">
@@ -17,14 +17,13 @@
           type="password"
           class="form-control"
           id="password"
-          v-model="customerLoginRequest.password"
+          v-model="managerLoginRequest.password"
         />
       </div>
     </form>
 
     <button type="submit" class="badge badge-success" @click="login">Login</button>
-    <button type="submit" class="badge badge-success" @click="signup">SignUp</button>
-    <button type="submit" class="badge badge-success" @click="manager">Manager</button>
+
     
     <p>{{ message }}</p>
   </div>
@@ -37,32 +36,26 @@ export default {
   name: "login",
   data() {						// data or variables used
     return {
-      customerLoginRequest: { customerId: "", password: "" },  // json
+      managerLoginRequest: { managerId: "", password: "" },  // json
       message: ""
     };
   },
   methods: {
     login() {
-      LoginService.login(this.customerLoginRequest)  
+      LoginService.loginManager(this.managerLoginRequest)  
         .then(response => {				// HttpStatus.OK
-          var customer = response.data;
-          console.log(customer);
-          localStorage.setItem("cid",customer.id);
+          var manager = response.data;
+          console.log(manager);
+          localStorage.setItem("cid",manager.id);
           this.$router.push({name: "registered-classes-list"});
         })
         .catch(e => {
-          this.customerLoginRequest.customerId = "";
-          this.customerLoginRequest.password = "";
+          this.managerLoginRequest.managerId = "";
+          this.managerLoginRequest.password = "";
           this.message = e.response.data.message;
           console.log(e.response.data);
         });
     },
-    signup(){
-        this.$router.push({name: "/signup"});
-    },
-    manager(){
-      this.$router.push({name: "/managerLogin"});
-    }
   },
   mounted() {		// called when component is loaded
     this.message = "";
