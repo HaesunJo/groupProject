@@ -1,7 +1,7 @@
 <template>
   <div v-if="customer" class="list row">
     <div class="col-md-8">
-      <div>Hi {{customer.customerName}}</div>
+      <div>Hi {{customer.name}}</div>
     </div>
 
     <div class="col-md-6">
@@ -10,27 +10,27 @@
         <li
           class="list-group-item"
           :class="{ active: index == currentIndex }"
-          v-for="(fclass, index) in classes"
+          v-for="(classes, index) in classes"
           :key="index"
-          @click="setActiveClass(fclass, index)"
-        >{{ fclass.className }}</li>
+          @click="setActiveClass(classes, index)"
+        >{{ course.title }}</li>
       </ul>
     </div>
 
     <div class="col-md-6">
-<div v-if="currentClass">
+      <div v-if="currentClass">
         <h4>Class</h4>
-        <div>
-          <label>
-            <strong>Class Name:</strong>
-          </label>
-          {{ currentClass.className }}
-        </div>
         <div>
           <label>
             <strong>Class Section:</strong>
           </label>
-          {{ currentClass.classSection }}
+          {{ currentClass.Section }}
+        </div>
+        <div>
+          <label>
+            <strong>Title:</strong>
+          </label>
+          {{ currentClass.name }}
         </div>
         <button
           v-if="regFlag"
@@ -49,7 +49,7 @@
       </div>
       <div v-if="regFlag">
         <br />
-        <a class="badge badge-warning" @click="refreshList">Show Registered Classe</a>
+        <a class="badge badge-warning" @click="refreshList">Show Registered Classes</a>
       </div>
       <div v-else>
         <br />
@@ -60,8 +60,8 @@
 </template>
 
 <script>
-import CustomerDataService from "../../services/CustomerDataService";
-import RegistrationDataService from "../../services/RegistrationDataService";
+import CustomerDataService from "../services/CustomerDataService";
+import RegistrationDataService from "../services/RegistrationDataService";
 
 export default {
   name: "reg-classes-list",
@@ -71,7 +71,7 @@ export default {
       classes: [],
       currentClass: null,
       currentIndex: -1,
-      subtitle: "Your Registered Class List",
+      subtitle: "Your Registered Classes List",
       regFlag: false,
       registrationRequest: { action: "", className: "" }
     };
@@ -79,12 +79,13 @@ export default {
 
   methods: {
     showUnregisterClass() {
+      // this.registrationRequest.studentId = this.student.id;
       RegistrationDataService.get(this.customer.id, false)
         .then(response => {
           this.currentClass = null;
           this.currentIndex = -1;
           this.classes = response.data;
-          this.subtitle = "Unregistered Class List";
+          this.subtitle = "Unregistered Classes List";
           this.regFlag = true;
         })
         .catch(e => {
@@ -95,7 +96,7 @@ export default {
       this.registrationRequest.action = "remove";
       this.registrationRequest.className = this.currentClass.id;
       CustomerDataService.unregister(
-        this.customer.id,
+        this.cistomer.id,
         this.registrationRequest
       ).then(response => {
         this.customer = response.data;
@@ -113,13 +114,13 @@ export default {
         this.refreshList();
       });
     },
-    setActiveClass(fclass, index) {
-      this.currentClass = fclass;
+    setActiveClass(classes, index) {
+      this.currentClass = classes;
       this.currentIndex = index;
     },
     refreshList() {
       this.retrieveCustomer(this.customer.id);
-      this.classes = this.customer.classes;
+      this.customer = this.customer.classes;
       this.currentClass = null;
       this.currentIndex = -1;
       this.regFlag = false;
@@ -132,7 +133,7 @@ export default {
         .then(response => {
           this.customer = response.data;
           this.classes = this.customer.classes;
-          this.subtitle = "Your Registered Class List";
+          this.subtitle = "Your Registered Classes List";
           this.regFlag = false;
           console.log(this.customer);
         })
@@ -141,7 +142,6 @@ export default {
         });
     }
   },
-
 
   mounted() {
     this.retrieveCustomer();

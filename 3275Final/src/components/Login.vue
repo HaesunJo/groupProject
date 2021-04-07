@@ -2,7 +2,7 @@
   <div class="edit-form">
     <h4>Login</h4>
     <form>
-<div class="form-group">
+      <div class="form-group">
         <label for="customerId">Customer ID</label>
         <input
           type="text"
@@ -27,16 +27,14 @@
   </div>
 </template>
 
-
 <script>
-// create LoginService
-import LoginService from "../../services/LoginService";
+import LoginService from "../services/LoginService";
 
 export default {
   name: "login",
-  data() {						
+  data() {						// data or variables used
     return {
-      customerLoginRequest: { customerId: "", password: "" },  
+      customerLoginRequest: { customerId: "", password: "" },  // json
       message: ""
     };
   },
@@ -47,7 +45,11 @@ export default {
           var customer = response.data;
           console.log(customer);
           localStorage.setItem("cid",customer.id);
-          this.$router.push({name: "registered-class-list"});
+		// store the student (sid) to the local storage
+		// RESTful server does not have session
+		// Session info is saved in local storage and talk to
+		// server as json
+          this.$router.push({name: "registered-classes-list"});
         })
         .catch(e => {
           this.customerLoginRequest.customerId = "";
@@ -57,7 +59,7 @@ export default {
         });
     }
   },
-  mounted() {	
+  mounted() {		// called when component is loaded
     this.message = "";
   }
 };

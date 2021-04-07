@@ -14,9 +14,15 @@ export default new Router({
     }
    ,
     {
-      path: "/registeredClassList",
-      name: "registered-class-list",
-      component: () => import("./components/RegisteredClassList")
+      path: "/registeredClassesList",
+      name: "registered-classes-list",
+      component: () => import("./components/RegisteredClassesList")
     }
+    /*,
+    {
+      path: "/classes",
+      name: "classes",
+      component: () => import("./components/ClassesList")
+    }*/
   ]
 });
