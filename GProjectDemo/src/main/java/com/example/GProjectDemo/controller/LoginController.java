@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import com.example.GProjectDemo.model.CustomerRepository;
 import com.example.GProjectDemo.request.CustomerLoginRequest;
 import com.example.GProjectDemo.response.MessageResponse;
 
+@CrossOrigin(origins = "http://localhost:8081") 
 @RestController
 @RequestMapping("/api")
 
@@ -26,12 +28,13 @@ public class LoginController {
 	CustomerRepository customerRepository;
 	
 	@PostMapping("/login")
-	public ResponseEntity<?> loging(@Valid @RequestBody CustomerLoginRequest loginRequest){
+	public ResponseEntity<?> login(@Valid @RequestBody CustomerLoginRequest loginRequest){
 		try {
 			Optional<Customer> customerData = customerRepository.findByCustomerId(loginRequest.getCustomerId());
+			System.out.println("LoginInfo: " + loginRequest);
 			if(customerData.isPresent()) {
 				String password = customerData.get().getCustomerPw();
-				if(password.contentEquals(loginRequest.getPassword())) {
+				if(password.equals(loginRequest.getCustomerPw())) {
 					return new ResponseEntity<>(customerData.get(), HttpStatus.OK);
 				}
 				MessageResponse msg = new MessageResponse("Incorrect password");

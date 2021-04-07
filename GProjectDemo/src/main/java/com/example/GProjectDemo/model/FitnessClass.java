@@ -35,20 +35,18 @@ public class FitnessClass {
 	@Column(name="time")
 	private String time;
 	
-	@Column(name="month")
-	private String month;
-	
+	@Column(name="duration")
+	private int duration;
+
 	@Column(name="day")
 	private String day;
-	
-	@Column(name="date")
-	private int date;
 	
 	@Column(name="instructor")
 	private String instructor;
 	
 	@Column(name="location")
 	private String location;
+
 	
 	// CREATE TABLE
 	@JsonIgnore 
@@ -71,23 +69,24 @@ public class FitnessClass {
 	
 	
 	
+	
+	
 	// Default Constructor
 	
 	public FitnessClass() {}
 	
-	public FitnessClass(String s, int i, String ins, int d, String loc, String m, String t) {
-		
-	}
-	
+//	public FitnessClass(String s, int i, String ins, int d, String loc, String m, String t) {
+//		
+//	}
+//	
 	// Constructor
 	public FitnessClass(String name, int classSection, 
-			String month, int date, String day, String time, String instructor, String location) {
+		 String day, String time, int duration, String instructor, String location) {
 		this.className = name;
 		this.classSection = classSection;
-		this.month = month;
-		this.date = date;
 		this.day = day;
 		this.time = time;
+		this.duration = duration;
 		this.instructor = instructor;
 		this.location = location;
 	}
@@ -133,13 +132,6 @@ public class FitnessClass {
 		this.classSection = classSection;
 	}
 
-	public String getMonth() {
-		return month;
-	}
-
-	public void setMonth(String month) {
-		this.month = month;
-	}
 
 	public String getDay() {
 		return day;
@@ -149,13 +141,6 @@ public class FitnessClass {
 		this.day = day;
 	}
 
-	public int getDate() {
-		return date;
-	}
-
-	public void setDate(int date) {
-		this.date = date;
-	}
 
 	public String getLocation() {
 		return location;
@@ -169,6 +154,21 @@ public class FitnessClass {
 		this.customers = customers;
 	}
 	
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+	
+
+	
+	public String toString() {
+		return "Class: " + this.className + " " + this.classSection + " " +
+	this.time + " " +this.duration + " " + this.day + " " + this.instructor +
+	" " + this.location;
+	}
 	
 	
 }
