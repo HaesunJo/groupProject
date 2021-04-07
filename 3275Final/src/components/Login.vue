@@ -10,7 +10,7 @@
           id="customerId"
           v-model="customerLoginRequest.customerId"
         />
-      </div>
+      </div>  
       <div class="form-group">
         <label for="password">Password</label>
         <input
@@ -22,11 +22,11 @@
       </div>
     </form>
 
-    <button type="submit" class="badge badge-success" @click="login">Login</button>
-    <button type="submit" class="badge badge-success" @click="signup">SignUp</button>
-    <button type="submit" class="badge badge-success" @click="manager">Manager</button>
+    <button type="submit" class="button4" @click="login">Login</button>
+    <button type="submit" class="button4" @click="signup">SignUp</button>
+    <button type="submit" class="button4" @click="manager">Manager</button>
     
-    <p>{{ message }}</p>
+    <p style="text-align:center">{{ message }}</p>
   </div>
 </template>
 
@@ -75,4 +75,26 @@ export default {
   max-width: 300px;
   margin: auto;
 }
+
+.button4{
+display:block;
+width: 60%;
+padding:5px;
+margin: 20px auto 10px auto;
+border:0.16em solid rgba(255,255,255,0);
+border-radius:10px;
+box-sizing: border-box;
+text-decoration:none;
+font-weight:300;
+color:#FFFFFF;
+text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+text-align:center;
+transition: all 0.2s;
+background-color:#16a085;
+}
+.button4:hover{
+border-color: rgba(255,255,255,1);
+} 
+
+
 </style>

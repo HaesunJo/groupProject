@@ -27,15 +27,15 @@ export default new Router({
     }
     ,
     {
+      path: "/class",
+      name: "/class",
+      component: () => import("./components/ClassList")
+    },
+    {
       path: "/registeredClassesList",
       name: "registered-classes-list",
       component: () => import("./components/RegisteredClassesList")
     }
-    /*,
-    {
-      path: "/classes",
-      name: "classes",
-      component: () => import("./components/ClassesList")
-    }*/
+
   ]
 });
