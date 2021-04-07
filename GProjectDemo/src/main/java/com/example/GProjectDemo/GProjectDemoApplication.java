@@ -27,11 +27,11 @@ public class GProjectDemoApplication {
 			ManagerRepository managerRepository, ProductRepository productRepository) {
 		return args -> {
 			
-			FitnessClass[] classes = {new FitnessClass("Yoga",1, "Monday", "12:30","Tiffany", "Vancouver"),
-					new FitnessClass("Pilates",1, "Friday", "12:30","Tiffany", "Vancouver"),
-					new FitnessClass("Yoga",2, "Monday", "12:30","Jason", "Richimnond"),
-					new FitnessClass("Pilates",2, "Tuesday", "12:30","Tiffany", "Vancouver"),
-					new FitnessClass("PT",1, "Monday", "11:30","Emile Imanov", "Vancouver")
+			FitnessClass[] classes = {new FitnessClass("Yoga",1, "Monday", "12:30",30 ,"Tiffany", "Vancouver"),
+					new FitnessClass("Pilates",1, "Friday","12:30",30 ,"Tiffany", "Vancouver"),
+					new FitnessClass("Yoga",2, "Monday","12:30",30 ,"Jason", "Richimnond"),
+					new FitnessClass("Pilates",2, "Tuesday","12:30",30 ,"Tiffany", "Vancouver"),
+					new FitnessClass("PT",1, "Monday", "11:30",30,"Emile Imanov", "Vancouver")
 					
 			};
 			

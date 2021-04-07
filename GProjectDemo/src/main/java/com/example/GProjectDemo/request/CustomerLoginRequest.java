@@ -18,13 +18,17 @@ public class CustomerLoginRequest {
 		this.customerId = customerId;
 	}
 
-	public String getPassword() {
+	public String getCustomerPw() {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setCustomerPw(String password) {
 		this.password = password;
 	}
 	
+	@Override
+	public String toString() {
+		return customerId + " " + password;
+	}
 	
 }

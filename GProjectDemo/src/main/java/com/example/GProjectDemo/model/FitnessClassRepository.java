@@ -12,6 +12,7 @@ public interface FitnessClassRepository extends JpaRepository<FitnessClass, Long
 	List<FitnessClass> findByClassSection(String classSection);
 	List<FitnessClass> findByInstructor(String instructor);
 	List<FitnessClass> findByDay(String day);
+	List<FitnessClass> findByDay(int duration);
 	List<FitnessClass> findByTime(String time);
 	List<FitnessClass> findByLocation(String location);
 }

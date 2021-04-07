@@ -111,5 +111,11 @@ public class Customer {
 		this.customerPw = customerPw;
 	}
 	
+
+	public String toString() {
+		return "Customer: " + this.customerName + " " + this.customerId +
+				this.customerEmail + " " + this.customerPw;
+	}
+	
 	
 }
