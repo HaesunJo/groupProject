@@ -14,7 +14,7 @@ public class ManagerLoginRequest {
 	public String getManagerId() {
 		return managerId;
 	}
-
+	
 	public void setManagerId(String managerId) {
 		this.managerId = managerId;
 	}

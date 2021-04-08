@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.GProjectDemo.model.Customer;
+import com.example.GProjectDemo.model.Manager;
 import com.example.GProjectDemo.model.CustomerRepository;
+import com.example.GProjectDemo.model.ManagerRepository;
 import com.example.GProjectDemo.request.CustomerLoginRequest;
+import com.example.GProjectDemo.request.ManagerLoginRequest;
 import com.example.GProjectDemo.response.MessageResponse;
 
 @CrossOrigin(origins = "http://localhost:8081") 
@@ -26,6 +29,7 @@ public class LoginController {
 
 	@Autowired
 	CustomerRepository customerRepository;
+	ManagerRepository managerRepository;
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@Valid @RequestBody CustomerLoginRequest loginRequest){
@@ -41,6 +45,27 @@ public class LoginController {
 				return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
 			}
 			MessageResponse msg = new MessageResponse("No customer data");
+			return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
+		} catch(Exception e) {
+			MessageResponse msg = new MessageResponse("Server error");
+			return new ResponseEntity<>(msg, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@PostMapping("/loginmanager")
+	public ResponseEntity<?> login(@Valid @RequestBody ManagerLoginRequest loginRequest){
+		try {
+			Optional<Manager> managerData = managerRepository.findByManagerId(loginRequest.getManagerId());
+			System.out.println("LoginInfo: " + loginRequest);
+			if(managerData.isPresent()) {
+				String password = managerData.get().getManagerPw();
+				if(password.equals(loginRequest.getManagerPw())) {
+					return new ResponseEntity<>(managerData.get(), HttpStatus.OK);
+				}
+				MessageResponse msg = new MessageResponse("Incorrect password");
+				return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
+			}
+			MessageResponse msg = new MessageResponse("No manager data");
 			return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
 		} catch(Exception e) {
 			MessageResponse msg = new MessageResponse("Server error");
