@@ -27,8 +27,8 @@ export default new Router({
     }
     ,
     {
-      path: "/class",
-      name: "/class",
+      path: "/classes",
+      name: "/classes",
       component: () => import("./components/ClassList")
     },
     {

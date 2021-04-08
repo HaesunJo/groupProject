@@ -19,22 +19,18 @@ import com.example.GProjectDemo.model.CustomerRepository;
 @RequestMapping("/api")
 public class CustomerController {
 
-	public class StudentController {
-		
-		@Autowired
-		CustomerRepository customerRepository;
-		
-		
-		@GetMapping("/customer/{id}")
-		public ResponseEntity<Customer> getStudentById(@PathVariable("id") long id) {
-			Optional<Customer> customerData = customerRepository.findById(id);
+	@Autowired
+	CustomerRepository customerRepository;
 
-			if (customerData.isPresent()) {
-				return new ResponseEntity<>(customerData.get(), HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
+	@GetMapping("/customer/{id}")
+	public ResponseEntity<Customer> getCustomerById(@PathVariable("id") long id) {
+		Optional<Customer> customerData = customerRepository.findById(id);
+
+		if (customerData.isPresent()) {
+			return new ResponseEntity<>(customerData.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		
 	}
+
 }

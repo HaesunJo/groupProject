@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     login() {
-      LoginService.loginManager(this.managerLoginRequest)  
+      LoginService.login(this.managerLoginRequest)  
         .then(response => {				// HttpStatus.OK
           var manager = response.data;
           console.log(manager);
