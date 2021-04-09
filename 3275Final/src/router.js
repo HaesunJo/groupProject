@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Read from './components/Read';
+import Board from './components/Board';
+//import Read from './components/Read';
 import Create from './components/Create';
 import Detail from './components/Detail';
 
@@ -42,19 +43,25 @@ export default new Router({
         },
         //added by Haesun
         {
-            path: '/',
-            name: 'Read',
-            component: Read
+            path: '/board',
+            name: 'Board',
+            component: Board
         },
 
+        // {
+        //     path: '/read',
+        //     name: 'Read',
+        //     component: Read
+        // },
+
         {
-            path: '/create/:contentId',
+            path: '/board/create/:contentId',
             name: 'Create',
             component: Create
         },
 
         {
-            path: '/detail/:contentId',
+            path: '/board/detail/:contentId',
             name: 'Detail',
             component: Detail
         }
