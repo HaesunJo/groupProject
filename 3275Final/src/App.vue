@@ -12,6 +12,9 @@
         <li class="nav-item">
           <router-link to="/community" class="nav-link">Community</router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/board" class="nav-link">Review</router-link>
+        </li>
       </div>
     </nav>
 
