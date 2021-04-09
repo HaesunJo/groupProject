@@ -9,7 +9,10 @@ public class RegistrationRequest {
 	private String action;
 	
 	@NotBlank(message = "Class name cannot be blank")
-	private Long className;
+	private String className;
+	
+	@NotBlank(message = "Class ID cannot be blank")
+	private Long classId;
 
 	public String getAction() {
 		return action;
@@ -19,12 +22,20 @@ public class RegistrationRequest {
 		this.action = action;
 	}
 
-	public Long getClassName() {
+	public String getClassName() {
 		return className;
 	}
 
-	public void setClassName(Long className) {
+	public void setClassName(String className) {
 		this.className = className;
+	}
+	
+	public Long getClassId() {
+		return classId;
+	}
+
+	public void setClassId(Long classId) {
+		this.classId = classId;
 	}
 	
 	

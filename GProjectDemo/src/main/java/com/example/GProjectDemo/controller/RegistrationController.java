@@ -25,7 +25,7 @@ import com.example.GProjectDemo.model.FitnessClassRepository;
 import com.example.GProjectDemo.request.RegistrationRequest;
 import com.example.GProjectDemo.response.MessageResponse;
 
-@CrossOrigin(origins = "http://localhost:8081") 
+@CrossOrigin(origins="http://localhost:8081")
 @RestController
 @RequestMapping("/api")
 public class RegistrationController {
@@ -42,7 +42,7 @@ public class RegistrationController {
 			Optional<Customer> customerData = customerRepository.findById(cid);
 			if(customerData.isPresent()) {
 				Customer customer = customerData.get();
-				Set<FitnessClass> registeredClasses = customer.getClaases();
+				Set<FitnessClass> registeredClasses = customer.getClasses();
 				if(registered) {
 					return new ResponseEntity<>(registeredClasses, HttpStatus.OK);
 				}
@@ -67,13 +67,12 @@ public class RegistrationController {
 	public ResponseEntity<?> addRemoveClass(@PathVariable("cid") Long cid, @Valid @RequestBody RegistrationRequest registrationRequest){
 		try{
 			String action = registrationRequest.getAction();
-			Long className = registrationRequest.getClassName();
+			Long classId = registrationRequest.getClassId();
 			Optional<Customer> CustomerData = customerRepository.findById(cid);
-			
 			if(CustomerData.isPresent()) {
 				Customer customer = CustomerData.get();
-				Optional<FitnessClass> classData = fitnessClassRepository.findById(className);
-				if(CustomerData.isPresent()) {
+				Optional<FitnessClass> classData = fitnessClassRepository.findById(classId);
+				if(classData.isPresent()) {
 					FitnessClass fitnessClass = classData.get();
 					if(action.equals("add")) {
 						customer.addClass(fitnessClass);						

@@ -14,63 +14,69 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "customers")
+@Table(name="customers")
 public class Customer {
 
 	// Attributes
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-
-	@Column(name = "customerId")
+	
+	@Column(name="customerId")
 	private String customerId;
-
-	@Column(name = "customerName")
+	
+	@Column(name="customerName")
 	private String customerName;
-
-	@Column(name = "customerEmail")
+	
+	@Column(name="customerEmail")
 	private String customerEmail;
-
-	@Column(name = "customerPw")
+	
+	@Column(name="customerPw")
 	private String customerPw;
+	
 
-	// ManyToMany
-	@ManyToMany(mappedBy = "customers", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-
+	//ManyToMany
+	@ManyToMany(mappedBy="customers", fetch=FetchType.LAZY, 
+			cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	
 	private Set<FitnessClass> classes = new HashSet<>();
 
-	public Set<FitnessClass> getClaases() {
+	public Set<FitnessClass> getClasses() {
 		return classes;
 	}
-
-	public void setClaases(Set<FitnessClass> classes) {
+	
+	public void setClasses(Set<FitnessClass> classes) {
 		this.classes = classes;
 	}
-
+	
+	
 	// Add class
 	public void addClass(FitnessClass fitnessClass) {
 		this.classes.add(fitnessClass);
 		fitnessClass.getCustomers().add(this);
 	}
-
+	
 	// Remove Class
 	public void removeClass(FitnessClass fitnessClass) {
 		fitnessClass.getCustomers().remove(this);
 		this.classes.remove(fitnessClass);
 	}
-
+	
+	
+	
 	// Default Constructor
 	public Customer() {
-
+		
 	}
-
+	
 	// Constructor
-	public Customer(String id, String name, String email, String pw) {
+	public Customer(String id, String name, String email,String pw ) {
 		this.customerId = id;
 		this.customerName = name;
 		this.customerEmail = email;
 		this.customerPw = pw;
 	}
+	
 
 	// Getter, Setter
 	public long getId() {
@@ -112,9 +118,6 @@ public class Customer {
 	public void setCustomerPw(String customerPw) {
 		this.customerPw = customerPw;
 	}
-
-	public String toString() {
-		return "Customer: " + this.customerName + " " + this.customerId  + " " + this.customerEmail + " " + this.customerPw;
-	}
-
+	
+	
 }

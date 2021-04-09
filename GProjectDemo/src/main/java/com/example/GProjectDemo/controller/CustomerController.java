@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.GProjectDemo.model.Customer;
 import com.example.GProjectDemo.model.CustomerRepository;
 
-@CrossOrigin(origins = "http://localhost:8081")
+
+@CrossOrigin(origins="http://localhost:8081") // used for vue
 @RestController
 @RequestMapping("/api")
 public class CustomerController {
-
 	@Autowired
 	CustomerRepository customerRepository;
-
+	
 	@GetMapping("/customer/{id}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable("id") long id) {
 		Optional<Customer> customerData = customerRepository.findById(id);
@@ -32,5 +32,4 @@ public class CustomerController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-
 }

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.GProjectDemo.model.FitnessClass;
 import com.example.GProjectDemo.model.FitnessClassRepository;
 
-@CrossOrigin(origins = "http://localhost:8081") 
+@CrossOrigin(origins="http://localhost:8081")
 @RestController
 @RequestMapping("/api")
 
@@ -53,7 +53,7 @@ public class FitnessClassController {
 	}
 	
 	@GetMapping("/classes/{id}")
-	public ResponseEntity<FitnessClass> getFitnessClassById(@PathVariable("id") long id){
+	public ResponseEntity<FitnessClass> getFitnessClassById(@PathVariable("id") Long id){
 		Optional<FitnessClass> classData = fitnessClassRepository.findById(id);
 		
 		if(classData.isPresent()) {
@@ -66,17 +66,17 @@ public class FitnessClassController {
 	@PostMapping("/classes")
 	public ResponseEntity<FitnessClass> createFClass(@RequestBody FitnessClass fclass){
 		try {
-			FitnessClass _fclass = fitnessClassRepository.save(new FitnessClass(fclass.getClassName(), fclass.getClassSection(), fclass.getInstructor(), fclass.getDay(), fclass.getDuration(), fclass.getLocation(), fclass.getTime()));
+			FitnessClass _fclass = fitnessClassRepository.save(new FitnessClass(fclass.getClassName(), fclass.getClassSection(), fclass.getInstructor(), fclass.getDate(), fclass.getLocation(), fclass.getMonth(), fclass.getTime(), fclass.getDay()));
 			return new ResponseEntity<>(_fclass, HttpStatus.CREATED);
 		} catch (Exception e){
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	@PutMapping("/classe")
+	@PutMapping("/classes")
 	public ResponseEntity<FitnessClass> updateFClass(@RequestBody FitnessClass fclass){
 		try {
-			FitnessClass _fclass = fitnessClassRepository.save(new FitnessClass(fclass.getClassName(), fclass.getClassSection(), fclass.getInstructor(), fclass.getDay(),fclass.getDuration(), fclass.getLocation(), fclass.getTime()));
+			FitnessClass _fclass = fitnessClassRepository.save(new FitnessClass(fclass.getClassName(), fclass.getClassSection(), fclass.getInstructor(), fclass.getDate(), fclass.getLocation(), fclass.getMonth(), fclass.getTime(), fclass.getDay()));
 			return new ResponseEntity<>(_fclass, HttpStatus.CREATED);
 		} catch (Exception e){
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -84,27 +84,28 @@ public class FitnessClassController {
 	}
 	
 	@PutMapping("/classes/{id}")
-	public ResponseEntity<FitnessClass> updateFClass(@PathVariable("id") long id, @RequestBody FitnessClass fClass){
+	public ResponseEntity<FitnessClass> updateFClass(@PathVariable("id") Long id, @RequestBody FitnessClass fClass){
 		Optional<FitnessClass> classData = fitnessClassRepository.findById(id);
 		
 		if(classData.isPresent()) {
 			FitnessClass _fClass = classData.get();
 			_fClass.setClassName(fClass.getClassName());
 			_fClass.setTime(fClass.getTime());
-			_fClass.setDuration(fClass.getDuration());
 			_fClass.setInstructor(fClass.getInstructor());
 			_fClass.setClassSection(fClass.getClassSection());
+			_fClass.setDate(fClass.getDate());
 			_fClass.setDay(fClass.getDay());
+			_fClass.setMonth(fClass.getMonth());
 			_fClass.setLocation(fClass.getLocation());
 			
 			return new ResponseEntity<>(fitnessClassRepository.save(fClass), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-	}
+	} 
 	
 	@DeleteMapping("/classes/{id}")
-	public ResponseEntity<HttpStatus> deleteClass(@PathVariable("id") long id){
+	public ResponseEntity<HttpStatus> deleteClass(@PathVariable("id") Long id){
 		try {
 			fitnessClassRepository.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
