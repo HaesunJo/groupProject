@@ -13,7 +13,7 @@
           v-for="(classes, index) in classes"
           :key="index"
           @click="setActiveClass(classes, index)"
-        >{{ course.title }}</li>
+        >{{ classes.className }}</li>
       </ul>
     </div>
 
@@ -30,7 +30,7 @@
           <label>
             <strong>Title:</strong>
           </label>
-          {{ currentClass.name }}
+          {{ currentClass.className }}
         </div>
         <button
           v-if="regFlag"
