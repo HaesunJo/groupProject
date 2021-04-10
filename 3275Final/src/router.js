@@ -4,6 +4,7 @@ import Board from '@/components/Board';
 //import Read from './components/Read';
 import Create from '@/components/Create';
 import Detail from '@/components/Detail';
+import MealPlanBoard from '@/components/MealPlanBoard';
 
 Vue.use(Router);
 
@@ -64,6 +65,13 @@ export default new Router({
             path: '/board/detail/:contentId',
             name: 'Detail',
             component: Detail
+
+        },
+
+        {
+            path: '/mealplan',
+            name: 'MealPlanBoard',
+            component: MealPlanBoard
         }
 
     ]
