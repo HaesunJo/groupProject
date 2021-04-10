@@ -30,7 +30,7 @@ public class FitnessClass {
 	private String className;
 	
 	@Column(name="classSection")
-	private int classSection;
+	private String classSection;
 	
 	@Column(name="time")
 	private String time;
@@ -42,7 +42,7 @@ public class FitnessClass {
 	private String day;
 	
 	@Column(name="date")
-	private int date;
+	private String date;
 	
 	@Column(name="instructor")
 	private String instructor;
@@ -75,13 +75,13 @@ public class FitnessClass {
 	
 	public FitnessClass() {}
 	
-	public FitnessClass(String s, int i, String ins, int d, String loc, String m, String t) {
+	public FitnessClass(String s, String i, String ins, String d, String loc, String m, String t) {
 		
 	}
 	
 	// Constructor
-	public FitnessClass(String name, int classSection, 
-			String month, int date, String day, String time, String instructor, String location) {
+	public FitnessClass(String name, String classSection, 
+			String month, String date, String day, String time, String instructor, String location) {
 		this.className = name;
 		this.classSection = classSection;
 		this.month = month;
@@ -125,11 +125,11 @@ public class FitnessClass {
 		this.instructor = instructor;
 	}
 
-	public int getClassSection() {
+	public String getClassSection() {
 		return classSection;
 	}
 
-	public void setClassSection(int classSection) {
+	public void setClassSection(String classSection) {
 		this.classSection = classSection;
 	}
 
@@ -149,11 +149,11 @@ public class FitnessClass {
 		this.day = day;
 	}
 
-	public int getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(int date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -172,3 +172,4 @@ public class FitnessClass {
 	
 	
 }
+

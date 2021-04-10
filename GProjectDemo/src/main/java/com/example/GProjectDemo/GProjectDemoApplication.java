@@ -1,9 +1,12 @@
 package com.example.GProjectDemo;
 
+import java.util.List;
+
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.domain.Specification;
 
 import com.example.GProjectDemo.model.Customer;
 import com.example.GProjectDemo.model.CustomerRepository;
@@ -13,6 +16,7 @@ import com.example.GProjectDemo.model.Manager;
 import com.example.GProjectDemo.model.ManagerRepository;
 import com.example.GProjectDemo.model.Product;
 import com.example.GProjectDemo.model.ProductRepository;
+import com.example.GProjectDemo.specification.FitnessClassSpecification;
 
 @SpringBootApplication
 public class GProjectDemoApplication {
@@ -23,15 +27,15 @@ public class GProjectDemoApplication {
 	
 	
 	@Bean
-	ApplicationRunner init(FitnessClassRepository fintessClassRepository, CustomerRepository customerRepository, 
+	ApplicationRunner init(FitnessClassRepository fitnessClassRepository, CustomerRepository customerRepository, 
 			ManagerRepository managerRepository, ProductRepository productRepository) {
 		return args -> {
 			
-			FitnessClass[] classes = {new FitnessClass("Yoga",1, "Jan",2,"Monday", "12:30","Tiffany", "Vancouver"),
-					new FitnessClass("Pilates",1, "Feb",5,"Friday", "12:30","Tiffany", "Vancouver"),
-					new FitnessClass("Yoga",2, "Jan",2,"Monday", "12:30","Jason", "Richimnond"),
-					new FitnessClass("Pilates",2, "Feb",16,"Tuesday", "12:30","Tiffany", "Vancouver"),
-					new FitnessClass("PT",1, "Jan",2,"Monday", "11:30","Emile Imanov", "Vancouver")
+			FitnessClass[] classes = {new FitnessClass("Yoga", "1", "Jan", "2","Monday", "12:30","Tiffany", "Vancouver"),
+					new FitnessClass("Pilates","1", "Feb","5","Friday", "12:30","Tiffany", "Vancouver"),
+					new FitnessClass("Yoga","2", "Jan","2","Monday", "12:30","Jason", "Richimnond"),
+					new FitnessClass("Pilates","2", "Feb","16","Tuesday", "12:30","Tiffany", "Vancouver"),
+					new FitnessClass("PT","1", "Jan","2","Monday", "11:30","Emile Imanov", "Vancouver")
 					
 			};
 			
@@ -58,9 +62,8 @@ public class GProjectDemoApplication {
 
 			
 			for(int i =0; i < classes.length; i++) {
-				fintessClassRepository.save(classes[i]);
-			}
-			
+				fitnessClassRepository.save(classes[i]);
+			}			
 
 			for(int i =0; i < customers.length; i++) {
 				customerRepository.save(customers[i]);
@@ -74,14 +77,15 @@ public class GProjectDemoApplication {
 				productRepository.save(products[i]);
 			}
 			
-			
-		
-			
-			fintessClassRepository.findAll().forEach(System.out::println);
+			fitnessClassRepository.findAll().forEach(System.out::println);
 			customerRepository.findAll().forEach(System.out::println);
 			managerRepository.findAll().forEach(System.out::println);
 			productRepository.findAll().forEach(System.out::println);
-	
+			
+			for(int i =0; i < classes.length; i++) {
+				Specification<FitnessClass> spec = new FitnessClassSpecification(classes[i]);
+				List<FitnessClass> result = FitnessClassRepository.findAll(spec);
+				}
 			
 		};
 	}
