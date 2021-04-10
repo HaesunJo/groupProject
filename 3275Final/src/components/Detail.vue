@@ -1,13 +1,10 @@
 <template>
     <div>
         <b-card>
-        <!-- <div>{{data.writer}}</div>
-        <div>{{data.title}}</div>
-        <div>{{data.content}}</div> -->
         <div class="detail-content-info">
             <div class="detail-content-info-left">
                 <div class="detail-content-info-left-number">
-                    {{contentId}}
+                    {{content_id}}
                 </div>
                 <div class="detail-content-info-left-subject">
                     {{title}}
@@ -16,10 +13,10 @@
 
             <div class="detail-content-info-right">
                 <div class="detail-content-info-right-user">
-                    Writer: {{user}}
+                    Writer: {{user_name}}
                 </div>
                 <div class="detail-content-info-right-created">
-                    Date: {{created}}
+                    Date: {{created_at}}
                 </div>
             </div>
         </div>
@@ -37,36 +34,36 @@
 </template>
 
 <script>
-import data from '@/data';
+import boardContent from '@/data/index';
+
+let data = boardContent;
 
 export default {
     name: 'Detail',
     data(){
-        const contentId = Number(this.$route.params.contentId);
-        const contentData = data.Content.filter(item => item.content_id === contentId)[0]
+        const content = this.$route.params.content;
+        this.contentId = content.content_id;
+
         return{
-            contentId: contentId,
-            title: contentData.title,
-            context: contentData.context,
-            user: data.User.filter(item => item.user_id === contentData.user_id)[0].name,
-            created: contentData.created_at
+            ...content
         };
     },
     methods: { 
         deleteData() {
-            const content_index = data.Content.findIndex(item => item.content_id === this.contentId);
-            data.splice(content_index, 1)
-            this.$router.push({
-                path: '/board'
-            })
+            const content_index = data.Content.findIndex(row => row.content_id == this.contentId);
+            data.Content.splice(content_index, 1)
+
+            this.$router.push({ path: '/board' });
         },
         updateData(){
-            this.$router.push({
-                name: `/board/create${this.contentId}`,
-                params:{
-                    contentId: this.index
-                }
-            })
+            // this.$router.push({
+            //     name: `/board/create${this.contentId}`,
+            //     params:{
+            //         contentId: this.index
+            //     }
+            // })
+
+            this.$router.push({ path: `/board/create/${this.contentId}` });
         }
 
     }

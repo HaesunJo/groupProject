@@ -1,9 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Board from './components/Board';
+import Board from '@/components/Board';
 //import Read from './components/Read';
-import Create from './components/Create';
-import Detail from './components/Detail';
+import Create from '@/components/Create';
+import Detail from '@/components/Detail';
 
 Vue.use(Router);
 
@@ -55,7 +55,7 @@ export default new Router({
         // },
 
         {
-            path: '/board/create/:contentId',
+            path: '/board/create/:contentId?',
             name: 'Create',
             component: Create
         },

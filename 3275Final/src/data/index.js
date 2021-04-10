@@ -1,17 +1,17 @@
 export default {
     User: [{
             user_id: 1,
-            name: customer1,
+            name: 'customer1',
             created_at: '2021-04-03'
         },
         {
             user_id: 2,
-            name: customer2,
+            name: 'customer2',
             created_at: '2021-05-03'
         },
         {
             user_id: 3,
-            name: customer3,
+            name: 'customer3',
             created_at: '2021-06-03'
         }
     ],

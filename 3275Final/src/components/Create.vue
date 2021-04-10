@@ -1,7 +1,7 @@
 <!-- added by Haesun-->
 <template>
     <div>
-        <b-input v-model="subject" placeholder="writer" />
+        <b-input v-model="subject" placeholder="Title here" />
         <!-- <b-input v-model="title" placeholder="title" />
         <b-input v-model="content" placeholder="content" /> -->
         <b-form-textarea
@@ -10,7 +10,8 @@
             rows="3"
             max-rows="6"
         ></b-form-textarea>
-        <b-button @click="updateMode ? updateContent() : uploadContent">Save</b-button>
+
+        <b-button @click="updateMode ? updateContent() : uploadContent()">Save</b-button>
         <b-button @click="cancel">Cancel</b-button>
 
         <!-- <button @click="index !== undefined ? update() : write()">{{index !== undefined ? 'Edit' : 'Upload'}}</button> -->
@@ -41,11 +42,11 @@ export default {
                 createdAt: '2021-04-03',
                 updatedAt: null,
                 updateObject: null,
-                updateMode: this.$route.prams.contentId > 0 ? true : false
+                updateMode: this.$route.params.contentId > 0 ? true : false
             }
         },
         created(){
-            if(this.$route.prams.contentId > 0){
+            if(this.$route.params.contentId > 0){
                 const contentId = Number(this.$route.params.contentId);
                 this.updateObject = data.Content.filter(item => item.content_id === contentId)[0];
                 this.subject = this.updateObject.title;
@@ -64,6 +65,9 @@ export default {
                     context: this.context,
                     created_at: this.createdAt,
                     updated_at: null
+                })
+                this.$router.push({
+                    path:'/board'
                 })
             },
             updateContent(){
