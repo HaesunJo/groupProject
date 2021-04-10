@@ -1,28 +1,84 @@
 <template> <!-- define the layout -->
   <div class="edit-form">
-    <div id="login-box">
-  <div class="left">
-    <h1>Sign up</h1>
-    
-    <input type="text" name="username" placeholder="Username" />
-    <input type="text" name="email" placeholder="E-mail" />
-    <input type="password" name="password" placeholder="Password" />
-    <input type="password" name="password2" placeholder="Retype password" />
-    
-    <input type="submit" name="signup_submit" value="Sign me up" />
-  </div>
+    <h4>SignUp</h4>
+    <form>
+      <div class="form-group">
+        <label for="customerId">User Id</label>
+        <input
+          type="text"
+          class="form-control"
+          id="customerId"
+          v-model="signUpRequest.customerId"
+        />
+      </div>  
 
-</div>
-  </div>
+      <div class="form-group">
+        <label for="customerName">User Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="customerName"
+          v-model="signUpRequest.customerName"
+        />
+      </div>  
 
-  
+      <div class="form-group">
+        <label for="customerEmail">User Email</label>
+        <input
+          type="text"
+          class="form-control"
+          id="customerEmail"
+          v-model="signUpRequest.customerEmail"
+        />
+      </div>  
+
+       <div class="form-group">
+        <label for="customerPw">User Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="customerPw"
+          v-model="signUpRequest.customerPw"
+        />
+      </div>  
+    </form>
+
+    <button type="submit" class="button4" @click="signup">SignUp</button>
+
+    
+    <p style="text-align:center">{{ message }}</p>
+  </div>
 </template>
 
 <script>
+import SignUpService from "../services/SignUpService";
 
 export default {
+  name: "signup",
+  data() {						// data or variables used
+    return {
+      signUpRequest: { customerId: "", customerName: "", customerEmail: "", password: "" },  // json
+      message: ""
+    };
+  },
   methods: {
-    
+    signup() {
+           SignUpService.signup(this.signUpRequest)  
+        .then(response => {				// HttpStatus.OK
+          var customer = response.data;
+          console.log(customer);    
+          localStorage.setItem("cid",customer.id);
+          this.$router.push({name: "login"});
+        })
+        .catch(e => {
+          this.signUpRequest.customerId = "";
+          this.signUpRequest.password = "";
+          this.signUpRequest.customerName = "";
+          this.signUpRequest.customerEmail = "";
+          this.message = e.response.data.message;
+          console.log(e.response.data);
+        });
+    }
   },
   mounted() {		// called when component is loaded
     this.message = "";
@@ -32,95 +88,29 @@ export default {
 
 <style>
 .edit-form {
-  max-width: 400px;
+  max-width: 300px;
   margin: auto;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
-*:focus {
-  outline: none;
+.button4{
+display:block;
+width: 60%;
+padding:5px;
+margin: 20px auto 10px auto;
+border:0.16em solid rgba(255,255,255,0);
+border-radius:10px;
+box-sizing: border-box;
+text-decoration:none;
+font-weight:300;
+color:#FFFFFF;
+text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+text-align:center;
+transition: all 0.2s;
+background-color:#16a085;
 }
+.button4:hover{
+border-color: rgba(255,255,255,1);
+} 
 
-body {
-  margin: 0;
-  padding: 0;
-  background: #DDD;
-  font-size: 16px;
-  color: #222;
-  font-weight: 300;
-}
-
-#login-box {
-  position: relative;
-  margin: auto;
-  width: 400px;
-  height: 400px;
-  background: #FFF;
-  border-radius: 2px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.left {
-  position: absolute;
-  top: 0;
-  left: 0;
-  box-sizing: border-box;
-  padding: 40px;
-  width: 400px;
-  height: 400px;
-}
-
-h1 {
-  margin: 10px 0 40px 0;
-  font-weight: 300;
-  font-size: 28px;
-  text-align: center;
-}
-
-input[type="text"],
-input[type="password"] {
-  display: block;
-  box-sizing: border-box;
-  margin: 10px auto 10px auto;
-  padding: 4px;
-  height: 32px;
-  border: none;
-  border-bottom: 1px solid #AAA;
-  font-weight: 400;
-  font-size: 15px;
-  transition: 0.2s ease;
-  text-align: center;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus {
-  border-bottom: 2px solid #16a085;
-  color: #16a085;
-  transition: 0.2s ease;
-  text-align: center;
-}
-
-input[type="submit"] {
-  display: block;
-  width: 60%;
-  margin: 40px auto auto auto;
-  background: #16a085;
-  border: none;
-  border-radius: 10px;
-  color: #FFF;
-  font-weight: 500;
-  text-transform: uppercase;
-  transition: 0.1s ease;
-  cursor: pointer;
-  text-align: center;
-}
-
-input[type="submit"]:hover,
-input[type="submit"]:focus {
-  opacity: 0.8;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  transition: 0.1s ease;
-  text-align: center;
-}
 
 </style>
